@@ -2,95 +2,185 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* EduPath Brand Colors - Light */
+    --edu-blue: 217 91% 60%;
+    --edu-blue-light: 213 97% 87%;
+    --edu-blue-dark: 224 76% 48%;
+    
+    --edu-green: 142 76% 36%;
+    --edu-green-light: 138 76% 90%;
+    --edu-green-dark: 142 72% 29%;
+    
+    --edu-purple: 263 70% 50%;
+    --edu-purple-light: 263 70% 90%;
+    --edu-purple-dark: 263 70% 40%;
+    
+    --edu-orange: 25 95% 53%;
+    --edu-orange-light: 25 95% 90%;
+    --edu-orange-dark: 25 95% 43%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --edu-red: 0 84% 60%;
+    --edu-red-light: 0 86% 90%;
+    --edu-red-dark: 0 84% 50%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    --edu-indigo: 239 84% 67%;
+    --edu-indigo-light: 239 84% 90%;
+    --edu-indigo-dark: 239 84% 55%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    --edu-teal: 174 84% 32%;
+    --edu-teal-light: 174 60% 90%;
+    
+    --edu-yellow: 38 92% 50%;
+    --edu-yellow-light: 48 96% 89%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    --edu-pink: 330 81% 60%;
+    --edu-pink-light: 330 81% 90%;
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    /* Gradient definitions */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--edu-blue-light)), hsl(239 84% 95%), hsl(var(--edu-purple-light)));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--edu-blue)), hsl(var(--edu-purple)));
+    --gradient-blue: linear-gradient(135deg, hsl(var(--edu-blue)), hsl(var(--edu-blue-dark)));
+    --gradient-green: linear-gradient(135deg, hsl(var(--edu-green)), hsl(142 72% 29%));
+    --gradient-purple: linear-gradient(135deg, hsl(var(--edu-purple)), hsl(var(--edu-purple-dark)));
+    --gradient-orange: linear-gradient(135deg, hsl(var(--edu-orange)), hsl(var(--edu-orange-dark)));
 
-    --sidebar-border: 220 13% 91%;
+    /* Surface colors */
+    --surface-elevated: 0 0% 100%;
+    --surface-sunken: 210 40% 96%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Text colors */
+    --text-primary: 222 47% 11%;
+    --text-secondary: 215 16% 47%;
+    --text-muted: 215 16% 60%;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.1), 0 2px 4px -2px hsl(222 47% 11% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1), 0 4px 6px -4px hsl(222 47% 11% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 8px 10px -6px hsl(222 47% 11% / 0.1);
+    --shadow-glow: 0 0 20px hsl(var(--edu-blue) / 0.3);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222 47% 6%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222 47% 8%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 47% 8%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 217 33% 17%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62% 30%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+
+    /* EduPath Brand Colors - Dark Mode (more vibrant) */
+    --edu-blue: 217 91% 65%;
+    --edu-blue-light: 217 40% 20%;
+    --edu-blue-dark: 217 91% 55%;
+    
+    --edu-green: 142 76% 45%;
+    --edu-green-light: 142 40% 15%;
+    --edu-green-dark: 142 76% 35%;
+    
+    --edu-purple: 263 70% 60%;
+    --edu-purple-light: 263 40% 18%;
+    --edu-purple-dark: 263 70% 50%;
+    
+    --edu-orange: 25 95% 58%;
+    --edu-orange-light: 25 40% 15%;
+    --edu-orange-dark: 25 95% 48%;
+
+    --edu-red: 0 84% 65%;
+    --edu-red-light: 0 40% 15%;
+    --edu-red-dark: 0 84% 55%;
+
+    --edu-indigo: 239 84% 72%;
+    --edu-indigo-light: 239 40% 18%;
+    --edu-indigo-dark: 239 84% 62%;
+
+    --edu-teal: 174 84% 42%;
+    --edu-teal-light: 174 40% 15%;
+    
+    --edu-yellow: 38 92% 55%;
+    --edu-yellow-light: 38 40% 15%;
+
+    --edu-pink: 330 81% 65%;
+    --edu-pink-light: 330 40% 18%;
+
+    /* Gradient definitions - Dark */
+    --gradient-hero: linear-gradient(135deg, hsl(222 47% 10%), hsl(239 40% 12%), hsl(263 35% 12%));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--edu-blue)), hsl(var(--edu-purple)));
+    --gradient-blue: linear-gradient(135deg, hsl(var(--edu-blue)), hsl(var(--edu-blue-dark)));
+    --gradient-green: linear-gradient(135deg, hsl(var(--edu-green)), hsl(var(--edu-green-dark)));
+    --gradient-purple: linear-gradient(135deg, hsl(var(--edu-purple)), hsl(var(--edu-purple-dark)));
+    --gradient-orange: linear-gradient(135deg, hsl(var(--edu-orange)), hsl(var(--edu-orange-dark)));
+
+    /* Surface colors - Dark */
+    --surface-elevated: 222 47% 11%;
+    --surface-sunken: 222 47% 5%;
+
+    /* Text colors - Dark */
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20% 65%;
+    --text-muted: 215 16% 55%;
+
+    /* Shadows - Dark */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.3), 0 4px 6px -4px hsl(0 0% 0% / 0.2);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.4), 0 8px 10px -6px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 30px hsl(var(--edu-blue) / 0.4);
   }
 }
 
@@ -99,7 +189,242 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Card variants */
+  .card-elevated {
+    @apply bg-card rounded-xl border border-border;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .card-glass {
+    @apply bg-card/80 backdrop-blur-sm rounded-xl border border-border/50;
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-blue {
+    background: var(--gradient-blue);
+  }
+
+  .bg-gradient-green {
+    background: var(--gradient-green);
+  }
+
+  .bg-gradient-purple {
+    background: var(--gradient-purple);
+  }
+
+  .bg-gradient-orange {
+    background: var(--gradient-orange);
+  }
+
+  /* Feature color backgrounds */
+  .bg-edu-blue {
+    @apply bg-[hsl(var(--edu-blue))];
+  }
+
+  .bg-edu-blue-light {
+    @apply bg-[hsl(var(--edu-blue-light))];
+  }
+
+  .bg-edu-green {
+    @apply bg-[hsl(var(--edu-green))];
+  }
+
+  .bg-edu-green-light {
+    @apply bg-[hsl(var(--edu-green-light))];
+  }
+
+  .bg-edu-purple {
+    @apply bg-[hsl(var(--edu-purple))];
+  }
+
+  .bg-edu-purple-light {
+    @apply bg-[hsl(var(--edu-purple-light))];
+  }
+
+  .bg-edu-orange {
+    @apply bg-[hsl(var(--edu-orange))];
+  }
+
+  .bg-edu-orange-light {
+    @apply bg-[hsl(var(--edu-orange-light))];
+  }
+
+  /* Text colors */
+  .text-edu-blue {
+    @apply text-[hsl(var(--edu-blue))];
+  }
+
+  .text-edu-green {
+    @apply text-[hsl(var(--edu-green))];
+  }
+
+  .text-edu-purple {
+    @apply text-[hsl(var(--edu-purple))];
+  }
+
+  .text-edu-orange {
+    @apply text-[hsl(var(--edu-orange))];
+  }
+
+  .text-edu-red {
+    @apply text-[hsl(var(--edu-red))];
+  }
+
+  .text-edu-indigo {
+    @apply text-[hsl(var(--edu-indigo))];
+  }
+
+  /* Border colors */
+  .border-edu-blue {
+    @apply border-[hsl(var(--edu-blue))];
+  }
+
+  .border-edu-green {
+    @apply border-[hsl(var(--edu-green))];
+  }
+
+  .border-edu-purple {
+    @apply border-[hsl(var(--edu-purple))];
+  }
+
+  .border-edu-orange {
+    @apply border-[hsl(var(--edu-orange))];
+  }
+
+  .border-edu-red {
+    @apply border-[hsl(var(--edu-red))];
+  }
+
+  .border-edu-indigo {
+    @apply border-[hsl(var(--edu-indigo))];
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-gradient-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-xl font-semibold border-2 border-border transition-all duration-300 hover:border-primary hover:text-primary;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-foreground px-6 py-3 rounded-xl font-semibold border-2 border-border transition-all duration-300 hover:bg-secondary;
+  }
+
+  /* Input styling */
+  .input-styled {
+    @apply w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring text-foreground placeholder:text-muted-foreground transition-all;
+  }
+
+  /* Badge variants */
+  .badge-blue {
+    @apply bg-[hsl(var(--edu-blue-light))] text-[hsl(var(--edu-blue))] px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-green {
+    @apply bg-[hsl(var(--edu-green-light))] text-[hsl(var(--edu-green))] px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-purple {
+    @apply bg-[hsl(var(--edu-purple-light))] text-[hsl(var(--edu-purple))] px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-orange {
+    @apply bg-[hsl(var(--edu-orange-light))] text-[hsl(var(--edu-orange))] px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-red {
+    @apply bg-[hsl(var(--edu-red-light))] text-[hsl(var(--edu-red))] px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-indigo {
+    @apply bg-[hsl(var(--edu-indigo-light))] text-[hsl(var(--edu-indigo))] px-3 py-1 rounded-full text-sm font-medium;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 3s ease-in-out 1s infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 20px hsl(var(--edu-blue) / 0.2);
+    }
+    to {
+      box-shadow: 0 0 30px hsl(var(--edu-blue) / 0.4);
+    }
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-card/80 backdrop-blur-md border border-border/50;
+  }
+
+  /* Scrollbar styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  /* Shadow utilities */
+  .shadow-elevated {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
   }
 }
