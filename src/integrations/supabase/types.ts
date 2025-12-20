@@ -14,7 +14,188 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      colleges: {
+        Row: {
+          courses: string[] | null
+          created_at: string | null
+          description: string | null
+          fees: string | null
+          id: string
+          image_url: string | null
+          location: string
+          name: string
+          ranking: number | null
+          streams: string[]
+          type: string
+          website: string | null
+        }
+        Insert: {
+          courses?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          fees?: string | null
+          id?: string
+          image_url?: string | null
+          location: string
+          name: string
+          ranking?: number | null
+          streams?: string[]
+          type: string
+          website?: string | null
+        }
+        Update: {
+          courses?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          fees?: string | null
+          id?: string
+          image_url?: string | null
+          location?: string
+          name?: string
+          ranking?: number | null
+          streams?: string[]
+          type?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
+      exams: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          exam_date: string | null
+          exam_type: string | null
+          id: string
+          name: string
+          registration_end: string | null
+          registration_start: string | null
+          streams: string[] | null
+          website: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          exam_date?: string | null
+          exam_type?: string | null
+          id?: string
+          name: string
+          registration_end?: string | null
+          registration_start?: string | null
+          streams?: string[] | null
+          website?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          exam_date?: string | null
+          exam_type?: string | null
+          id?: string
+          name?: string
+          registration_end?: string | null
+          registration_start?: string | null
+          streams?: string[] | null
+          website?: string | null
+        }
+        Relationships: []
+      }
+      favorites: {
+        Row: {
+          college_id: string
+          created_at: string | null
+          id: string
+          user_id: string
+        }
+        Insert: {
+          college_id: string
+          created_at?: string | null
+          id?: string
+          user_id: string
+        }
+        Update: {
+          college_id?: string
+          created_at?: string | null
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favorites_college_id_fkey"
+            columns: ["college_id"]
+            isOneToOne: false
+            referencedRelation: "colleges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          class: string
+          created_at: string | null
+          id: string
+          location: string | null
+          name: string
+          stream: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          class?: string
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          name: string
+          stream?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          class?: string
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          name?: string
+          stream?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      scholarships: {
+        Row: {
+          amount: string | null
+          created_at: string | null
+          deadline: string | null
+          description: string | null
+          eligibility: string | null
+          id: string
+          name: string
+          streams: string[] | null
+          website: string | null
+        }
+        Insert: {
+          amount?: string | null
+          created_at?: string | null
+          deadline?: string | null
+          description?: string | null
+          eligibility?: string | null
+          id?: string
+          name: string
+          streams?: string[] | null
+          website?: string | null
+        }
+        Update: {
+          amount?: string | null
+          created_at?: string | null
+          deadline?: string | null
+          description?: string | null
+          eligibility?: string | null
+          id?: string
+          name?: string
+          streams?: string[] | null
+          website?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
