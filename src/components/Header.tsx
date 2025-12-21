@@ -3,18 +3,11 @@ import { Search, Menu, X, GraduationCap } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
-  isLoggedIn: boolean;
-  onLogin: () => void;
-  user?: {
-    name: string;
-    class: string;
-    stream: string;
-    location: string;
-  };
   onSearch: (query: string) => void;
+  onSectionChange: (section: string) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ isLoggedIn, onLogin, user, onSearch }) => {
+export const Header: React.FC<HeaderProps> = ({ onSearch, onSectionChange }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
@@ -83,14 +76,6 @@ export const Header: React.FC<HeaderProps> = ({ isLoggedIn, onLogin, user, onSea
                 />
               </div>
             </form>
-            {!isLoggedIn && (
-              <button
-                onClick={onLogin}
-                className="btn-primary w-full"
-              >
-                Login
-              </button>
-            )}
           </div>
         )}
       </div>
