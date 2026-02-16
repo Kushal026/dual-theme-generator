@@ -40,10 +40,8 @@ export const TimelineTracker: React.FC<TimelineTrackerProps> = ({ onBack }) => {
   const { isAuthenticated, profile } = useAuth();
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchData();
-    }
-  }, [isAuthenticated]);
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     const [examsRes, scholarshipsRes] = await Promise.all([
@@ -103,17 +101,6 @@ export const TimelineTracker: React.FC<TimelineTrackerProps> = ({ onBack }) => {
     }
   };
 
-  if (!isAuthenticated) {
-    return (
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 text-center">
-          <Calendar className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-foreground mb-4">Login to View Timeline</h2>
-          <p className="text-muted-foreground mb-6">Sign in to track important exam dates and scholarships</p>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="py-16 bg-background">
