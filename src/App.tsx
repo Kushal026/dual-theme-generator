@@ -7,6 +7,15 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import CollegesPage from "./pages/CollegesPage";
+import TimelinePage from "./pages/TimelinePage";
+import CareersPage from "./pages/CareersPage";
+import QuizPage from "./pages/QuizPage";
+import LearnMorePage from "./pages/LearnMorePage";
+import FavoritesPage from "./pages/FavoritesPage";
+import DashboardPage from "./pages/DashboardPage";
+import AIAdvisorPage from "./pages/AIAdvisorPage";
+import ComparePage from "./pages/ComparePage";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +29,15 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/colleges" element={<CollegesPage />} />
+            <Route path="/timeline" element={<TimelinePage />} />
+            <Route path="/careers" element={<CareersPage />} />
+            <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/learnmore" element={<LearnMorePage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/ai-advisor" element={<AIAdvisorPage />} />
+            <Route path="/compare" element={<ComparePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

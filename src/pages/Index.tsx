@@ -1,44 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
-import { AptitudeQuiz } from '../components/AptitudeQuiz';
-import { CareerPaths } from '../components/CareerPaths';
-import { CollegeDirectory } from '../components/CollegeDirectory';
-import { TimelineTracker } from '../components/TimelineTracker';
-import { Dashboard } from '../components/Dashboard';
-import { LearnMore } from '../components/LearnMore';
 import { SearchResults } from '../components/SearchResults';
-import { useAuth } from '@/hooks/useAuth';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
-  const [currentSection, setCurrentSection] = useState('home');
-  const [selectedClassLevel, setSelectedClassLevel] = useState<'10th' | '12th' | null>(null);
-  const [selectedStream, setSelectedStream] = useState<string | null>(null);
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  
-  const { isAuthenticated, profile } = useAuth();
-
-  const handleGetStarted = () => {
-    if (isAuthenticated) {
-      setCurrentSection('dashboard');
-    } else {
-      setCurrentSection('quiz');
-    }
-  };
-
-  const handleClassSelection = (classLevel: '10th' | '12th', stream?: string) => {
-    setSelectedClassLevel(classLevel);
-    if (stream) {
-      setSelectedStream(stream);
-    }
-    if (classLevel === '12th' && stream) {
-      setCurrentSection('careers');
-    } else {
-      setCurrentSection('quiz');
-    }
-  };
+  const navigate = useNavigate();
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -46,45 +17,29 @@ const Index = () => {
     setShowSearchResults(true);
   };
 
-  const renderSection = () => {
-    switch (currentSection) {
-      case 'home':
-        return <Hero onGetStarted={handleGetStarted} onClassSelection={handleClassSelection} onSectionChange={setCurrentSection} />;
-      case 'dashboard':
-        return isAuthenticated ? <Dashboard onSectionChange={setCurrentSection} /> : <Hero onGetStarted={handleGetStarted} onClassSelection={handleClassSelection} onSectionChange={setCurrentSection} />;
-      case 'quiz':
-        return <AptitudeQuiz
-          selectedClassLevel={selectedClassLevel}
-          selectedStream={selectedStream}
-          onBack={() => setCurrentSection('home')}
-          onStreamChange={(stream) => setSelectedStream(stream)}
-        />;
-      case 'careers':
-        return <CareerPaths selectedClassLevel={selectedClassLevel} selectedStream={selectedStream} />;
-      case 'colleges':
-        return <CollegeDirectory selectedClassLevel={selectedClassLevel} selectedStream={selectedStream} />;
-      case 'favorites':
-        return <CollegeDirectory showFavoritesOnly={true} />;
-      case 'timeline':
-        return <TimelineTracker onBack={() => setCurrentSection('home')} />;
-      case 'learnmore':
-        return <LearnMore onBack={() => setCurrentSection('home')} />;
-      default:
-        return <Hero onGetStarted={handleGetStarted} onClassSelection={handleClassSelection} onSectionChange={setCurrentSection} />;
+  const handleGetStarted = () => {
+    navigate('/quiz');
+  };
+
+  const handleClassSelection = (classLevel: '10th' | '12th', stream?: string) => {
+    if (classLevel === '12th' && stream) {
+      navigate(`/careers?class=${classLevel}&stream=${stream}`);
+    } else {
+      navigate(`/quiz?class=${classLevel}`);
     }
   };
 
   return (
     <div className="min-h-screen bg-background">
-      <Header onSearch={handleSearch} onSectionChange={setCurrentSection} />
-      {renderSection()}
+      <Header onSearch={handleSearch} />
+      <Hero onGetStarted={handleGetStarted} onClassSelection={handleClassSelection} onSectionChange={(section) => navigate(`/${section === 'home' ? '' : section}`)} />
 
       <SearchResults
         isOpen={showSearchResults}
         onClose={() => setShowSearchResults(false)}
         results={searchResults}
         searchQuery={searchQuery}
-        onNavigate={(section) => setCurrentSection(section)}
+        onNavigate={(section) => navigate(`/${section === 'home' ? '' : section}`)}
       />
 
       <footer className="bg-card border-t border-border py-12">
@@ -97,17 +52,17 @@ const Index = () => {
             <div>
               <h4 className="font-semibold text-foreground mb-4">Features</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => setCurrentSection('quiz')}>Aptitude Assessment</li>
-                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => setCurrentSection('careers')}>Career Guidance</li>
-                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => setCurrentSection('colleges')}>College Directory</li>
-                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => setCurrentSection('timeline')}>Timeline Tracker</li>
+                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => navigate('/quiz')}>Aptitude Assessment</li>
+                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => navigate('/careers')}>Career Guidance</li>
+                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => navigate('/colleges')}>College Directory</li>
+                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => navigate('/timeline')}>Timeline Tracker</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-4">Resources</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => setCurrentSection('learnmore')}>Learn More</li>
-                <li className="hover:text-foreground cursor-pointer transition-colors">Help Center</li>
+                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => navigate('/learnmore')}>Learn More</li>
+                <li className="hover:text-foreground cursor-pointer transition-colors" onClick={() => navigate('/ai-advisor')}>AI Career Advisor</li>
                 <li className="hover:text-foreground cursor-pointer transition-colors">Privacy Policy</li>
               </ul>
             </div>

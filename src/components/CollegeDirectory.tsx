@@ -46,14 +46,9 @@ export const CollegeDirectory: React.FC<CollegeDirectoryProps> = ({
 
   useEffect(() => {
     fetchColleges();
-  }, [isAuthenticated]);
+  }, []);
 
   const fetchColleges = async () => {
-    if (!isAuthenticated) {
-      setLoading(false);
-      return;
-    }
-
     const { data, error } = await supabase
       .from('colleges')
       .select('*')
@@ -94,17 +89,6 @@ export const CollegeDirectory: React.FC<CollegeDirectoryProps> = ({
     private: filteredColleges.filter(c => c.type === 'Private').length,
   };
 
-  if (!isAuthenticated) {
-    return (
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 text-center">
-          <GraduationCap className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-foreground mb-4">Login to View Colleges</h2>
-          <p className="text-muted-foreground mb-6">Sign in to explore our comprehensive college directory</p>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="py-16 bg-background">
